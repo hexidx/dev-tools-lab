@@ -1,0 +1,36 @@
+name: Codex Daily Task
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  codex-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Codex task
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            Read AGENT.md and BACKLOG.md.
+
+            Pick exactly one safe micro-task.
+
+            Rules:
+            - change must be small
+            - prefer tests, docs, or utilities
+            - run ruff check .
+            - run pytest
+            - create a new branch
+            - commit with a conventional commit message
+            - open a pull request
