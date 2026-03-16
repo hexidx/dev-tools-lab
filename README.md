@@ -12,3 +12,7 @@ A public sandbox for small developer tools, CLI utilities, validators, parsers, 
 - `tests/` automated tests
 - `BACKLOG.md` task queue
 - `AGENT.md` rules for autonomous work
+
+
+## Included utilities
+- `dev_tools_lab.line_count.count_lines` for counting lines in text.
